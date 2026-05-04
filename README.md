@@ -413,8 +413,10 @@ patience:       15
 ### Deployment with flask 
 
 <img width="1560" height="927" alt="image" src="https://github.com/user-attachments/assets/96be50df-631a-4ce4-a841-56beea1fe4f7" />
-<img width="1799" height="922" alt="image" src="https://github.com/user-attachments/assets/d668b202-8291-463b-b9a6-fe36bb0bcfc8" />
-<img width="850" height="796" alt="image" src="https://github.com/user-attachments/assets/a7d30b68-1375-4e3b-bcca-089025ace714" />
+<img width="1693" height="919" alt="image" src="https://github.com/user-attachments/assets/9d20ca00-dc79-46b8-9550-09753ba13919" />
+<img width="814" height="756" alt="image" src="https://github.com/user-attachments/assets/87194c9b-34fb-449c-b503-7dc293fb398b" />
+
+<img width="556" height="685" alt="image" src="https://github.com/user-attachments/assets/35a04f42-10e7-400d-a002-8f008e2fc5b7" />
 
 
 ---
