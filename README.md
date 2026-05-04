@@ -409,6 +409,14 @@ warmup_epochs:  3
 patience:       15
 ```
 
+
+### Deployment with flask 
+
+<img width="1560" height="927" alt="image" src="https://github.com/user-attachments/assets/96be50df-631a-4ce4-a841-56beea1fe4f7" />
+<img width="1799" height="922" alt="image" src="https://github.com/user-attachments/assets/d668b202-8291-463b-b9a6-fe36bb0bcfc8" />
+<img width="850" height="796" alt="image" src="https://github.com/user-attachments/assets/a7d30b68-1375-4e3b-bcca-089025ace714" />
+
+
 ---
 
 ## 📦 Requirements
