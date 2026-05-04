@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental AI | Cavity Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            letter-spacing: -1px;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .main-container {
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .upload-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .drop-zone {
+            border: 2px dashed #334155;
+            border-radius: 16px;
+            padding: 40px 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .drop-zone i {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn-process {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-process:hover {
+            opacity: 0.9;
+        }
+
+        .result-section {
+            margin-top: 40px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .result-image-wrapper {
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 0;
+        }
+
+        .result-image-wrapper img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .result-badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        label {
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DENTAL VISION AI</h1>
+        <p>Advanced diagnostic imaging for cavity detection</p>
+    </header>
+
+    <div class="main-container">
+        <div class="upload-card">
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="image-upload" class="drop-zone">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">📸</span>
+                    <strong>Click to select</strong> or drag and drop<br>
+                    <small style="color: #64748b;">Supports: JPG, PNG, WEBP</small>
+                    <input type="file" id="image-upload" name="image" accept="image/*" required onchange="displayFileName(this)">
+                    <p id="file-name" style="margin-top: 15px; color: var(--primary); font-weight: bold;"></p>
+                </label>
+                
+                <button type="submit" class="btn-process">Analyze Image</button>
+            </form>
+
+            {% if image_url %}
+            <div class="result-section">
+                <h3 style="color: #94a3b8; font-weight: 400; margin-bottom: 15px;">Analysis Result</h3>
+                <div class="result-image-wrapper">
+                    <img src="{{ image_url }}" alt="Processed dental scan">
+                </div>
+                <div class="result-badge">Scan Complete</div>
+                <div style="margin-top: 20px;">
+                    <a href="/" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem;">Reset and Upload New Scan</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DentalVision AI. For clinical reference only.</p>
+    </footer>
+
+    <script>
+        function displayFileName(input) {
+            const fileName = input.files[0]?.name;
+            if (fileName) {
+                document.getElementById('file-name').textContent = "Selected: " + fileName;
+            }
+        }
+    </script>
+</body>
+</html>
