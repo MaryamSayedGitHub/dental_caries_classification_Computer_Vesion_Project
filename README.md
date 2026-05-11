@@ -11,8 +11,6 @@
 **A production-ready deep learning pipeline for automated dental caries detection and segmentation.**  
 Benchmarks 9 YOLO architectures, trains a two-stage Faster R-CNN baseline, and deploys a REST API — all in one notebook.
 
-[▶ Open in Colab](#) · [📦 Dataset](#dataset) · [📊 Results](#results) · [🚀 Deployment](#deployment)
-
 </div>
 
 ---
